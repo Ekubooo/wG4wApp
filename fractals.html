@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Fractal - Unity WebGPU</title>
@@ -14,6 +9,11 @@
         
         <!-- Unity Style - Corrected Path -->
         <link rel="stylesheet" href="Fractal/TemplateData/style.css">
+        
+        <!-- 引入截图和二维码生成的库 (使用CDN) -->
+        <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@0.0.2/qrcode.min.js"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
         <style>
             /* Custom adjustments to fit Unity inside Forty theme */
             #unity-container {
@@ -27,6 +27,57 @@
                 width: 100%;
                 height: auto;
                 aspect-ratio: 16/10;
+            }
+
+            /* 分享卡片的样式 (默认隐藏，仅用于生成图片) */
+            #share-card-wrapper {
+                position: fixed;
+                top: -9999px;
+                left: -9999px;
+                z-index: -1;
+            }
+
+            #share-card {
+                display: flex;
+                flex-direction: row; /* 横向排列 */
+                background-color: #242943; /* 保持网站主题色 */
+                padding: 20px;
+                align-items: center;
+                width: 1200px; /* 固定宽度以保证生成质量 */
+                border: 2px solid #9bf1ff;
+            }
+
+            .share-image-container {
+                flex: 3;
+                margin-right: 20px;
+            }
+
+            .share-image-container img {
+                width: 100%;
+                display: block;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .share-info-container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-align: center;
+            }
+
+            .share-info-container h3 {
+                margin-bottom: 10px;
+                color: #9bf1ff;
+            }
+
+            #qrcode-container {
+                background: white;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 4px;
             }
         </style>
 	</head>
@@ -54,6 +105,10 @@
                             <li><a href="documents.html">Documents</a></li>
                             <li><a href="text_page.html">About</a></li>
 						</ul>
+                        <!-- 新增：截图分享按钮 -->
+                        <ul class="actions stacked">
+                            <li><a href="#" id="btn-share-screenshot" class="button primary fit">share</a></li>
+                        </ul>
 					</nav>
 
 				<!-- Banner -->
@@ -172,6 +227,22 @@
 
 			</div>
 
+        <!-- 隐藏的截图生成区域 -->
+        <div id="share-card-wrapper">
+            <div id="share-card">
+                <div class="share-image-container">
+                    <!-- 这里会动态插入 Unity 的截图 -->
+                    <img id="unity-screenshot-img" src="" alt="Unity Screenshot" />
+                </div>
+                <div class="share-info-container">
+                    <h3>Fractal</h3>
+                    <p>Scan to Visit</p>
+                    <div id="qrcode-container"></div>
+                    <p style="margin-top: 10px; font-size: 0.8em;">Powered by WebGPU</p>
+                </div>
+            </div>
+        </div>
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -217,6 +288,10 @@
                   productName: "Web-End Demonstration",
                   productVersion: "0.1",
                   showBanner: unityShowBanner,
+                  // CRITICAL CHANGE: This allows the canvas to be captured by toDataURL()
+                  webglContextAttributes: {
+                      preserveDrawingBuffer: true
+                  }
                 };
           
                 if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -249,6 +324,48 @@
                       };
           
                 document.body.appendChild(script);
+
+                // === 截图与分享功能逻辑 ===
+                document.getElementById('btn-share-screenshot').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 1. 获取 Unity Canvas 的图像数据
+                    // 注意：config 中必须设置 preserveDrawingBuffer: true，否则这里会是黑屏
+                    var unityCanvas = document.querySelector("#unity-canvas");
+                    var dataURL = unityCanvas.toDataURL("image/png");
+                    document.getElementById('unity-screenshot-img').src = dataURL;
+
+                    // 2. 生成二维码
+                    var qrContainer = document.getElementById("qrcode-container");
+                    qrContainer.innerHTML = ""; // 清空旧的二维码
+                    var currentUrl = window.location.href;
+                    
+                    new QRCode(qrContainer, {
+                        text: currentUrl,
+                        width: 150,
+                        height: 150,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+
+                    // 3. 使用 html2canvas 将隐藏的 #share-card 渲染为图片并下载
+                    var shareCard = document.getElementById("share-card");
+                    
+                    // 给一点时间让图片和二维码渲染完成
+                    setTimeout(() => {
+                        html2canvas(shareCard, {
+                            backgroundColor: null, // 保持透明或CSS背景
+                            scale: 1 // 可以提高缩放比例以获得更高清晰度
+                        }).then(canvas => {
+                            // 创建下载链接
+                            var link = document.createElement('a');
+                            link.download = 'Share.png';
+                            link.href = canvas.toDataURL("image/png");
+                            link.click();
+                        });
+                    }, 100);
+                });
               </script>
 
 	</body>
