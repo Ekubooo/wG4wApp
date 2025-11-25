@@ -1,0 +1,8 @@
+images/
+
+assets/webfonts/
+
+**/TemplateData/
+**/Build/Build.data
+**/Build/Build.wasm
+**/Build/Build.framework.js

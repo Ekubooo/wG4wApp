@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Math Surfaces - Unity WebGPU</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
+        <!-- Unity Style - Corrected Path -->
+        <link rel="stylesheet" href="MathSurface/TemplateData/style.css">
+        <style>
+            /* Custom adjustments to fit Unity inside Forty theme */
+            #unity-container {
+                position: relative;
+                width: 100%;
+                max-width: 960px;
+                margin: 2em auto;
+                background: #232323;
+            }
+            canvas#unity-canvas {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/10;
+            }
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt style2">
+						<a href="index.html" class="logo"><strong>Portfolio</strong> <span>by HTML5 UP</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="fluid2d.html">2D Fluid</a></li>
+							<li><a href="fluid3d.html">3D Fluid</a></li>
+							<li><a href="fractals.html">Fractals</a></li>
+							<li><a href="math_surfaces.html">Math Surfaces</a></li>
+                            <li><a href="documents.html">Documents</a></li>
+                            <li><a href="text_page.html">About</a></li>
+						</ul>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner" class="style2">
+						<div class="inner">
+							<span class="image">
+								<img src="images/pic07.jpg" alt="" />
+							</span>
+							<header class="major">
+								<h1>Math Surfaces</h1>
+							</header>
+							<div class="content">
+								<p>Visualizing complex mathematical equations<br />
+								using GPU-accelerated rendering.</p>
+							</div>
+						</div>
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Content Section -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h2>Interactive Visualization</h2>
+									</header>
+									<p>Explore the mathematical surfaces below.</p>
+									<p>Explore the mathematical surfaces below.</p>
+									<p>Explore the mathematical surfaces below.</p>
+                                    
+                                    <!-- UNITY CONTAINER START -->
+                                    <div id="unity-container" class="unity-desktop">
+                                        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+                                        <div id="unity-loading-bar">
+                                          <div id="unity-logo"></div>
+                                          <div id="unity-progress-bar-empty">
+                                            <div id="unity-progress-bar-full"></div>
+                                          </div>
+                                        </div>
+                                        <div id="unity-warning"> </div>
+                                        <div id="unity-footer">
+                                          <div id="unity-logo-title-footer"></div>
+                                          <div id="unity-fullscreen-button"></div>
+                                          <div id="unity-build-title">Web-End Demonstration</div>
+                                        </div>
+                                      </div>
+                                    <!-- UNITY CONTAINER END -->
+
+								</div>
+							</section>
+					</div>
+
+				<!-- Contact -->
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="6"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Clear" /></li>
+									</ul>
+								</form>
+							</section>
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">jinkunh@wku.edu.cn</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-phone"></span>
+										<h3>Phone</h3>
+										<span>10086</span>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-home"></span>
+										<h3>Address</h3>
+										<span>STEM Building 1075<br />
+										Morris Ave, Union<br />
+										NJ 07083, United States 
+										</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Untitled</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+            <!-- Unity Scripts -->
+            <script>
+                var canvas = document.querySelector("#unity-canvas");
+          
+                function unityShowBanner(msg, type) {
+                  var warningBanner = document.querySelector("#unity-warning");
+                  function updateBannerVisibility() {
+                    warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+                  }
+                  var div = document.createElement('div');
+                  div.innerHTML = msg;
+                  warningBanner.appendChild(div);
+                  if (type == 'error') div.style = 'background: red; padding: 10px;';
+                  else {
+                    if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                    setTimeout(function() {
+                      warningBanner.removeChild(div);
+                      updateBannerVisibility();
+                    }, 5000);
+                  }
+                  updateBannerVisibility();
+                }
+          
+                // Corrected Path: Pointing to MathSurface/Build
+                var buildUrl = "MathSurface/Build";
+                var loaderUrl = buildUrl + "/Build.loader.js";
+                var config = {
+                  arguments: [],
+                  dataUrl: buildUrl + "/Build.data",
+                  frameworkUrl: buildUrl + "/Build.framework.js",
+                  codeUrl: buildUrl + "/Build.wasm",
+                  streamingAssetsUrl: "MathSurface/StreamingAssets", // Updated Path
+                  companyName: "DefaultCompany",
+                  productName: "Web-End Demonstration",
+                  productVersion: "0.1",
+                  showBanner: unityShowBanner,
+                };
+          
+                if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                  var meta = document.createElement('meta');
+                  meta.name = 'viewport';
+                  meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+                  document.getElementsByTagName('head')[0].appendChild(meta);
+                  document.querySelector("#unity-container").className = "unity-mobile";
+                  canvas.className = "unity-mobile";
+                } else {
+                  canvas.style.width = "960px";
+                  canvas.style.height = "600px";
+                }
+          
+                document.querySelector("#unity-loading-bar").style.display = "block";
+          
+                var script = document.createElement("script");
+                script.src = loaderUrl;
+                script.onload = () => {
+                  createUnityInstance(canvas, config, (progress) => {
+                    document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+                        }).then((unityInstance) => {
+                          document.querySelector("#unity-loading-bar").style.display = "none";
+                          document.querySelector("#unity-fullscreen-button").onclick = () => {
+                            unityInstance.SetFullscreen(1);
+                          };
+                        }).catch((message) => {
+                          alert(message);
+                        });
+                      };
+          
+                document.body.appendChild(script);
+              </script>
+
+	</body>
+</html>

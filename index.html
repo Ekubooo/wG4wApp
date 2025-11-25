@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>WebGPU Demonstration</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href="index.html" class="logo"><strong>Graphics</strong> <span>by Hu JinKun</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="fluid2d.html">2D Fluid</a></li>
+							<li><a href="fluid3d.html">3D Fluid</a></li>
+							<li><a href="fractals.html">Fractals</a></li>
+							<li><a href="math_surfaces.html">Math Surfaces</a></li>
+							<li><a href="documents.html">Documents</a></li>
+							<li><a href="text_page.html">About</a></li>
+						</ul>
+                        <!-- Added Login Actions -->
+                        <ul class="actions stacked">
+                            <li><a href="login.html" class="button primary fit" id="menu-login-btn">Log In</a></li>
+                            <li><a href="#" class="button fit" id="menu-logout-btn" style="display: none;">Log Out</a></li>
+                        </ul>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner" class="major">
+						<div class="inner">
+							<header class="major">
+                                <!-- 给h1添加了一个ID，方便JS修改 -->
+								<h1 id="banner-title">Welcome to My Showcase</h1>
+							</header>
+							<div class="content">
+								<p>Exploring Fluid Dynamics, Fractals,<br />
+								and Mathematical Visualizations with WebGPU.</p>
+								<ul class="actions">
+									<li><a href="#one" class="button next scrolly">Explore Projects</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one" class="tiles">
+								<!-- Button 1: 2D Fluid -->
+								<article>
+									<span class="image">
+										<img src="images/pic01.jpg" alt="2D Fluid Simulation" />
+									</span>
+									<header class="major">
+										<h3><a href="fluid2d.html" class="link">2D Fluid</a></h3>
+										<p>Unity WebGPU 2D Fluid Simulation</p>
+									</header>
+								</article>
+								
+								<!-- Button 2: 3D Fluid -->
+								<article>
+									<span class="image">
+										<img src="images/pic02.jpg" alt="3D Fluid Simulation" />
+									</span>
+									<header class="major">
+										<h3><a href="fluid3d.html" class="link">3D Fluid</a></h3>
+										<p>Volumetric 3D Fluid Dynamics</p>
+									</header>
+								</article>
+								
+								<!-- Button 3: Fractals -->
+								<article>
+									<span class="image">
+										<img src="images/pic03_2.png" alt="Fractals" />
+									</span>
+									<header class="major">
+										<h3><a href="fractals.html" class="link">Fractals</a></h3>
+										<p>Real-time Fractal Exploration</p>
+									</header>
+								</article>
+								
+								<!-- Button 4: Math Surfaces -->
+								<article>
+									<span class="image">
+										<img src="images/pic04_2.png" alt="Math Surfaces" />
+									</span>
+									<header class="major">
+										<h3><a href="math_surfaces.html" class="link">Math Surfaces</a></h3>
+										<p>Mathematical Surface Visualization</p>
+									</header>
+								</article>
+								
+								<!-- Button 5: Documents -->
+								<article>
+									<span class="image">
+										<img src="images/pic05.jpg" alt="Documents" />
+									</span>
+									<header class="major">
+										<h3><a href="documents.html" class="link">Documents</a></h3>
+										<p>Research Papers & Documentation</p>
+									</header>
+								</article>
+								
+								<!-- Button 6: Text Page -->
+								<article>
+									<span class="image">
+										<img src="images/pic06.jpg" alt="About" />
+									</span>
+									<header class="major">
+										<h3><a href="text_page.html" class="link">About Project</a></h3>
+										<p>Additional Information & Context</p>
+									</header>
+								</article>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="inner">
+									<header class="major">
+										<h2>About This Collection</h2>
+									</header>
+									<p>This portfolio demonstrates the capabilities of modern web graphics technologies. By leveraging Unity and WebGPU, we can render complex simulations and mathematical structures directly in the browser with high performance.</p>
+									<ul class="actions">
+										<li><a href="text_page.html" class="button next">Read More</a></li>
+									</ul>
+								</div>
+							</section>
+
+					</div>
+
+				<!-- Contact -->
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="6"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Clear" /></li>
+									</ul>
+								</form>
+							</section>
+							<section class="split">
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-envelope"></span>
+										<h3>Email</h3>
+										<a href="#">jinkunh@wku.edu.cn</a>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-phone"></span>
+										<h3>Phone</h3>
+										<span>1008611</span>
+									</div>
+								</section>
+								<section>
+									<div class="contact-method">
+										<span class="icon solid alt fa-home"></span>
+										<h3>Address</h3>
+										<span>STEM Building 1075<br />
+										Morris Ave, Union<br />
+										NJ 07083, United States 
+										</span>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            
+            <!-- User Greeting Logic -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // 检查是否有保存的用户名
+                    const username = localStorage.getItem('portfolio_username');
+                    const bannerTitle = document.getElementById('banner-title');
+                    const loginBtn = document.getElementById('menu-login-btn');
+                    const logoutBtn = document.getElementById('menu-logout-btn');
+
+                    if (username) {
+                        // 如果已登录
+                        if (bannerTitle) {
+                            // 添加 "Hi: xxx." 前缀
+                            // 原始文本是 "Welcome to My Showcase"
+                            bannerTitle.innerHTML = `Hi: ${username}. <br />Welcome to My Showcase`;
+                        }
+
+                        // 切换菜单按钮状态
+                        if (loginBtn) loginBtn.style.display = 'none';
+                        if (logoutBtn) {
+                            logoutBtn.style.display = 'block';
+                            // 登出逻辑
+                            logoutBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                localStorage.removeItem('portfolio_username');
+                                window.location.reload(); 
+								// 刷新页面以重置状态
+                            });
+                        }
+                    } else {
+                        // 未登录状态
+                         if (bannerTitle) {
+                            bannerTitle.innerHTML = "Welcome to My Showcase";
+                         }
+                         if (loginBtn) loginBtn.style.display = 'block';
+                         if (logoutBtn) logoutBtn.style.display = 'none';
+                    }
+                });
+            </script>
+
+	</body>
+</html>

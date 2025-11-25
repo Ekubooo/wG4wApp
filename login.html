@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Login - WebGPU Demonstration</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            /* * === 背景图片设置 === */
+            #banner {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/bg.png");
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            /* 登录容器样式调整 */
+            .login-container {
+                max-width: 600px; /* 稍微调窄一点，竖排时太宽会不好看 */
+                width: 100%;
+                margin: 0 auto;
+            }
+            
+            /* 调整Label */
+            .login-label {
+                display: block;
+                margin-bottom: 0.8rem; /* 增加一点标签和输入框的距离 */
+                font-weight: bold;
+                font-size: 1.25rem; /* 标签文字也放大 */
+            }
+
+            /* === 核心放大逻辑 === */
+            /* 放大输入框和按钮 */
+            #loginForm input[type="email"],
+            #loginForm input[type="submit"] {
+                font-size: 1.25rem; /* 字体放大 25% (假设默认是 1rem) */
+                height: 4rem;       /* 高度放大 (默认通常是 2.75rem 或 3.25rem，这里设为 4rem 显眼) */
+                padding-left: 1.5rem; /* 内边距也适当增加 */
+            }
+
+            /* 竖排布局间距 */
+            .login-stack > div {
+                margin-bottom: 2rem; /* 邮箱栏和按钮之间的间距 */
+            }
+            
+            /* 去除最后一个元素的底部间距 */
+            .login-stack > div:last-child {
+                margin-bottom: 0;
+            }
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Banner (Login Section) -->
+					<section id="banner" class="major">
+						<div class="inner">
+                            <div class="login-container">
+                                
+                                <!-- Login Form -->
+                                <form id="loginForm" method="post" action="#">
+                                    <!-- 使用简单的块级布局实现竖排 -->
+                                    <div class="login-stack">
+                                        
+                                        <!-- 1. Email 输入框 -->
+                                        <div class="field">
+                                            <label for="email" class="login-label">Email for Login</label>
+                                            <input type="email" name="email" id="email" placeholder="user@example.com" required />
+                                        </div>
+
+                                        <!-- 2. 登录按钮 -->
+                                        <!-- 使用 'fit' 类让按钮充满容器宽度，从而与输入框等长 -->
+                                        <div class="actions">
+                                            <input type="submit" value="Login" class="button primary fit" />
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+            <!-- Login Logic Script -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const loginForm = document.getElementById('loginForm');
+                    
+                    loginForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        const emailInput = document.getElementById('email');
+                        const email = emailInput.value;
+                        
+                        if (email) {
+                            const username = email.split('@')[0];
+                            localStorage.setItem('portfolio_username', username);
+                            window.location.href = 'index.html';
+                        }
+                    });
+                });
+            </script>
+
+	</body>
+</html>
