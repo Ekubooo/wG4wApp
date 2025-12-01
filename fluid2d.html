@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Fractal - Unity WebGPU</title>
+		<title>Fluid2D - Unity WebGPU</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         
         <!-- Unity Style - Corrected Path -->
-        <link rel="stylesheet" href="Fractal/TemplateData/style.css">
+        <link rel="stylesheet" href="Fluid2D/TemplateData/style.css">
         
         <!-- 引入截图和二维码生成的库 (使用CDN) -->
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@0.0.2/qrcode.min.js"></script>
@@ -102,26 +102,26 @@
 							<li><a href="fluid3d.html">3D Fluid</a></li>
 							<li><a href="fractals.html">Fractals</a></li>
 							<li><a href="math_surfaces.html">Math Surfaces</a></li>
-                            <li><a href="documents.html">Documents</a></li>
-                            <li><a href="text_page.html">About</a></li>
+              <li><a href="documents.html">Documents</a></li>
+              <li><a href="text_page.html">About</a></li>
 						</ul>
-                        <!-- 新增：截图分享按钮 -->
-                        <ul class="actions stacked">
-                            <li><a href="#" id="btn-share-screenshot" class="button primary fit">share</a></li>
-                        </ul>
+
+            <ul class="actions stacked">
+                <li><a href="#" id="btn-share-screenshot" class="button primary fit">share</a></li>
+            </ul>
 					</nav>
 
 				<!-- Banner -->
 					<section id="banner" class="style2">
 						<div class="inner">
 							<span class="image">
-								<img src="images/pic07.jpg" alt="" />
+								<img src="images/pic01.png" alt="" />
 							</span>
 							<header class="major">
-								<h1>Fractal</h1>
+								<h1>Fluid2D</h1>
 							</header>
 							<div class="content">
-								<p>Visualizing complex mathematical equations<br />
+								<p>Interactive visualization 2D fluid simulator<br />
 								using GPU-accelerated rendering.</p>
 							</div>
 						</div>
@@ -136,9 +136,9 @@
 									<header class="major">
 										<h2>Interactive Visualization</h2>
 									</header>
-									<p>Explore the mathematical surfaces below.</p>
-									<p>Explore the mathematical surfaces below.</p>
-									<p>Explore the mathematical surfaces below.</p>
+									<p>P for play/pause</p>
+									<p>R for Reset</p>
+									<p>N for Next frame</p>
                                     
                                     <!-- UNITY CONTAINER START -->
                                     <div id="unity-container" class="unity-desktop">
@@ -235,7 +235,7 @@
                     <img id="unity-screenshot-img" src="" alt="Unity Screenshot" />
                 </div>
                 <div class="share-info-container">
-                    <h3>Fractal</h3>
+                    <h3>Fluid2D</h3>
                     <p>Scan to Visit</p>
                     <div id="qrcode-container"></div>
                     <p style="margin-top: 10px; font-size: 0.8em;">Powered by WebGPU</p>
@@ -276,14 +276,14 @@
                 }
           
                 // Corrected Path: Pointing to MathSurface/Build
-                var buildUrl = "Fractal/Build";
+                var buildUrl = "Fluid2D/Build";
                 var loaderUrl = buildUrl + "/Build.loader.js";
                 var config = {
                   arguments: [],
                   dataUrl: buildUrl + "/Build.data",
                   frameworkUrl: buildUrl + "/Build.framework.js",
                   codeUrl: buildUrl + "/Build.wasm",
-                  streamingAssetsUrl: "Fractal/StreamingAssets", // Updated Path
+                  streamingAssetsUrl: "Fluid2D/StreamingAssets", // Updated Path
                   companyName: "DefaultCompany",
                   productName: "Web-End Demonstration",
                   productVersion: "0.1",
