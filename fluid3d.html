@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Fractal - Unity WebGPU</title>
+		<title>Fluid3D - Unity WebGPU</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         
         <!-- Unity Style - Corrected Path -->
-        <link rel="stylesheet" href="Fractal/TemplateData/style.css">
+        <link rel="stylesheet" href="Fluid3D/TemplateData/style.css">
         
         <!-- 引入截图和二维码生成的库 (使用CDN) -->
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@0.0.2/qrcode.min.js"></script>
@@ -118,10 +118,10 @@
 								<img src="images/pic07.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Fractal</h1>
+								<h1>Fluid3D</h1>
 							</header>
 							<div class="content">
-								<p>Visualizing complex mathematical equations<br />
+								<p>Visualizing complex Fluid3D<br />
 								using GPU-accelerated rendering.</p>
 							</div>
 						</div>
@@ -134,11 +134,11 @@
 							<section id="one">
 								<div class="inner">
 									<header class="major">
-										<h2>Interactive Visualization</h2>
+										<h2>Interactive 3D Fluid Sim</h2>
 									</header>
-									<p>Explore the mathematical surfaces below.</p>
-									<p>Explore the mathematical surfaces below.</p>
-									<p>Explore the mathematical surfaces below.</p>
+									<p>P for play/pause, R for reset.</p>
+									<p>S for slow modle, G for reversing gravity.</p>
+									<p>Q or E for Rotating.</p>
                                     
                                     <!-- UNITY CONTAINER START -->
                                     <div id="unity-container" class="unity-desktop">
@@ -235,7 +235,7 @@
                     <img id="unity-screenshot-img" src="" alt="Unity Screenshot" />
                 </div>
                 <div class="share-info-container">
-                    <h3>Fractal</h3>
+                    <h3>Fluid3D</h3>
                     <p>Scan to Visit</p>
                     <div id="qrcode-container"></div>
                     <p style="margin-top: 10px; font-size: 0.8em;">Powered by WebGPU</p>
@@ -276,14 +276,14 @@
                 }
           
                 // Corrected Path: Pointing to MathSurface/Build
-                var buildUrl = "Fractal/Build";
+                var buildUrl = "Fluid3D/Build";
                 var loaderUrl = buildUrl + "/Build.loader.js";
                 var config = {
                   arguments: [],
                   dataUrl: buildUrl + "/Build.data",
                   frameworkUrl: buildUrl + "/Build.framework.js",
                   codeUrl: buildUrl + "/Build.wasm",
-                  streamingAssetsUrl: "Fractal/StreamingAssets", // Updated Path
+                  streamingAssetsUrl: "Fluid3D/StreamingAssets", // Updated Path
                   companyName: "DefaultCompany",
                   productName: "Web-End Demonstration",
                   productVersion: "0.1",
