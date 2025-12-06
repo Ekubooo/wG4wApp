@@ -10,7 +10,7 @@
         <!-- Unity Style - Corrected Path -->
         <link rel="stylesheet" href="Fluid2D/TemplateData/style.css">
         
-        <!-- 引入截图和二维码生成的库 (使用CDN) -->
+        
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@0.0.2/qrcode.min.js"></script>
         <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
@@ -29,7 +29,7 @@
                 aspect-ratio: 16/10;
             }
 
-            /* 分享卡片的样式 (默认隐藏，仅用于生成图片) */
+            /* card style */
             #share-card-wrapper {
                 position: fixed;
                 top: -9999px;
@@ -39,11 +39,11 @@
 
             #share-card {
                 display: flex;
-                flex-direction: row; /* 横向排列 */
-                background-color: #242943; /* 保持网站主题色 */
+                flex-direction: row; 
+                background-color: #242943; 
                 padding: 20px;
                 align-items: center;
-                width: 1200px; /* 固定宽度以保证生成质量 */
+                width: 1200px; 
                 border: 2px solid #9bf1ff;
             }
 
@@ -140,23 +140,23 @@
 									<p>R for Reset</p>
 									<p>N for Next frame</p>
                                     
-                                    <!-- UNITY CONTAINER START -->
-                                    <div id="unity-container" class="unity-desktop">
-                                        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-                                        <div id="unity-loading-bar">
-                                          <div id="unity-logo"></div>
-                                          <div id="unity-progress-bar-empty">
-                                            <div id="unity-progress-bar-full"></div>
-                                          </div>
-                                        </div>
-                                        <div id="unity-warning"> </div>
-                                        <div id="unity-footer">
-                                          <div id="unity-logo-title-footer"></div>
-                                          <div id="unity-fullscreen-button"></div>
-                                          <div id="unity-build-title">Web-End Demonstration</div>
-                                        </div>
-                                      </div>
-                                    <!-- UNITY CONTAINER END -->
+                  <!-- UNITY CONTAINER START -->
+                  <div id="unity-container" class="unity-desktop">
+                      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+                      <div id="unity-loading-bar">
+                        <div id="unity-logo"></div>
+                        <div id="unity-progress-bar-empty">
+                          <div id="unity-progress-bar-full"></div>
+                        </div>
+                      </div>
+                      <div id="unity-warning"> </div>
+                      <div id="unity-footer">
+                        <div id="unity-logo-title-footer"></div>
+                        <div id="unity-fullscreen-button"></div>
+                        <div id="unity-build-title">Web-End Demonstration</div>
+                      </div>
+                    </div>
+                  <!-- UNITY CONTAINER END -->
 
 								</div>
 							</section>
@@ -227,11 +227,11 @@
 
 			</div>
 
-        <!-- 隐藏的截图生成区域 -->
+        <!-- sc func -->
         <div id="share-card-wrapper">
             <div id="share-card">
                 <div class="share-image-container">
-                    <!-- 这里会动态插入 Unity 的截图 -->
+                    <!--  Unity cut -->
                     <img id="unity-screenshot-img" src="" alt="Unity Screenshot" />
                 </div>
                 <div class="share-info-container">
@@ -325,19 +325,17 @@
           
                 document.body.appendChild(script);
 
-                // === 截图与分享功能逻辑 ===
+                // sc func
                 document.getElementById('btn-share-screenshot').addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // 1. 获取 Unity Canvas 的图像数据
-                    // 注意：config 中必须设置 preserveDrawingBuffer: true，否则这里会是黑屏
+                    // 1. get Unity Canvas 
                     var unityCanvas = document.querySelector("#unity-canvas");
                     var dataURL = unityCanvas.toDataURL("image/png");
                     document.getElementById('unity-screenshot-img').src = dataURL;
 
-                    // 2. 生成二维码
                     var qrContainer = document.getElementById("qrcode-container");
-                    qrContainer.innerHTML = ""; // 清空旧的二维码
+                    qrContainer.innerHTML = ""; 
                     var currentUrl = window.location.href;
                     
                     new QRCode(qrContainer, {
@@ -349,16 +347,13 @@
                         correctLevel : QRCode.CorrectLevel.H
                     });
 
-                    // 3. 使用 html2canvas 将隐藏的 #share-card 渲染为图片并下载
                     var shareCard = document.getElementById("share-card");
                     
-                    // 给一点时间让图片和二维码渲染完成
                     setTimeout(() => {
                         html2canvas(shareCard, {
-                            backgroundColor: null, // 保持透明或CSS背景
-                            scale: 1 // 可以提高缩放比例以获得更高清晰度
+                            backgroundColor: null, 
+                            scale: 1 
                         }).then(canvas => {
-                            // 创建下载链接
                             var link = document.createElement('a');
                             link.download = 'Share.png';
                             link.href = canvas.toDataURL("image/png");
