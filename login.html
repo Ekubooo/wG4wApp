@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <style>
-            /* * === 背景图片设置 === */
             #banner {
                 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/bg.png");
                 background-position: center;
@@ -17,7 +16,7 @@
 
             /* 登录容器样式调整 */
             .login-container {
-                max-width: 600px; /* 稍微调窄一点，竖排时太宽会不好看 */
+                max-width: 600px;
                 width: 100%;
                 margin: 0 auto;
             }
@@ -25,26 +24,23 @@
             /* 调整Label */
             .login-label {
                 display: block;
-                margin-bottom: 0.8rem; /* 增加一点标签和输入框的距离 */
+                margin-bottom: 0.8rem;
                 font-weight: bold;
-                font-size: 1.25rem; /* 标签文字也放大 */
+                font-size: 1.25rem;
             }
 
             /* === 核心放大逻辑 === */
-            /* 放大输入框和按钮 */
             #loginForm input[type="email"],
             #loginForm input[type="submit"] {
-                font-size: 1.25rem;     /* 字体放大 25% (假设默认是 1rem) */
-                height: 4rem;           /* 高度放大 (默认通常是 2.75rem 或 3.25rem，这里设为 4rem 显眼) */
-                padding-left: 1.5rem;   /* 内边距也适当增加 */
+                font-size: 1.25rem;
+                height: 4rem;
+                padding-left: 1.5rem;
             }
 
-            /* 竖排布局间距 */
             .login-stack > div {
-                margin-bottom: 2rem; /* 邮箱栏和按钮之间的间距 */
+                margin-bottom: 2rem;
             }
             
-            /* 去除最后一个元素的底部间距 */
             .login-stack > div:last-child {
                 margin-bottom: 0;
             }
@@ -62,7 +58,6 @@
                                 
                                 <!-- Login Form -->
                                 <form id="loginForm" method="post" action="#">
-                                    <!-- 使用简单的块级布局实现竖排 -->
                                     <div class="login-stack">
                                         
                                         <!-- 1. Email 输入框 -->
@@ -72,7 +67,6 @@
                                         </div>
 
                                         <!-- 2. 登录按钮 -->
-                                        <!-- 使用 'fit' 类让按钮充满容器宽度，从而与输入框等长 -->
                                         <div class="actions">
                                             <input type="submit" value="Login" class="button primary fit" />
                                         </div>
@@ -94,18 +88,36 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-            <!-- Login Logic Script -->
+            <!-- Login Logic Script (Updated with Node.js Logging) -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const loginForm = document.getElementById('loginForm');
                     
-                    loginForm.addEventListener('submit', function(e) {
+                    // 将函数改为 async 以便处理网络请求
+                    loginForm.addEventListener('submit', async function(e) {
                         e.preventDefault();
                         const emailInput = document.getElementById('email');
                         const email = emailInput.value;
                         
                         if (email) {
                             const username = email.split('@')[0];
+                            
+                            // === 新增: 发送登录日志到 Node.js 后台 ===
+                            try {
+                                await fetch('http://localhost:3000/api/login', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ username: username })
+                                });
+                                console.log('Login log sent to server');
+                            } catch (error) {
+                                console.error('Failed to send login log:', error);
+                                // 即使日志发送失败，也不应阻止用户登录流程
+                            }
+                            // === 结束新增 ===
+
                             localStorage.setItem('portfolio_username', username);
                             window.location.href = 'index.html';
                         }
