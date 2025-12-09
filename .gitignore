@@ -6,3 +6,5 @@ assets/webfonts/
 **/Build/Build.data
 **/Build/Build.wasm
 **/Build/Build.framework.js
+log-server/node_modules/
+

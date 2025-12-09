@@ -31,7 +31,7 @@
 							<li><a href="documents.html">Documents</a></li>
 							<li><a href="text_page.html">About</a></li>
 						</ul>
-                        <!-- Added Login Actions -->
+                        <!-- Login Actions -->
                         <ul class="actions stacked">
                             <li><a href="login.html" class="button primary fit" id="menu-login-btn">Log In</a></li>
                             <li><a href="#" class="button fit" id="menu-logout-btn" style="display: none;">Log Out</a></li>
@@ -42,7 +42,6 @@
 					<section id="banner" class="major">
 						<div class="inner">
 							<header class="major">
-                                <!-- 给h1添加了一个ID，方便JS修改 -->
 								<h1 id="banner-title">Welcome to My Showcase</h1>
 							</header>
 							<div class="content">
@@ -57,69 +56,45 @@
 
 				<!-- Main -->
 					<div id="main">
-
-						<!-- One -->
+						<!-- One: Tiles Section -->
 							<section id="one" class="tiles">
-								<!-- Button 1: 2D Fluid -->
 								<article>
-									<span class="image">
-										<img src="images/pic01.png" alt="2D Fluid Simulation" />
-									</span>
+									<span class="image"><img src="images/pic01.png" alt="2D Fluid Simulation" /></span>
 									<header class="major">
 										<h3><a href="fluid2d.html" class="link">2D Fluid</a></h3>
 										<p>Unity WebGPU 2D Fluid Simulation</p>
 									</header>
 								</article>
-								
-								<!-- Button 2: 3D Fluid -->
 								<article>
-									<span class="image">
-										<img src="images/pic02.jpg" alt="3D Fluid Simulation" />
-									</span>
+									<span class="image"><img src="images/pic02.png" alt="3D Fluid Simulation" /></span>
 									<header class="major">
 										<h3><a href="fluid3d.html" class="link">3D Fluid</a></h3>
 										<p>Volumetric 3D Fluid Dynamics</p>
 									</header>
 								</article>
-								
-								<!-- Button 3: Fractals -->
 								<article>
-									<span class="image">
-										<img src="images/pic03_2.png" alt="Fractals" />
-									</span>
+									<span class="image"><img src="images/pic03_2.png" alt="Fractals" /></span>
 									<header class="major">
 										<h3><a href="fractals.html" class="link">Fractals</a></h3>
 										<p>Real-time Fractal Exploration</p>
 									</header>
 								</article>
-								
-								<!-- Button 4: Math Surfaces -->
 								<article>
-									<span class="image">
-										<img src="images/pic04_2.png" alt="Math Surfaces" />
-									</span>
+									<span class="image"><img src="images/pic04_2.png" alt="Math Surfaces" /></span>
 									<header class="major">
 										<h3><a href="math_surfaces.html" class="link">Math Surfaces</a></h3>
 										<p>Mathematical Surface Visualization</p>
 									</header>
 								</article>
-								
-								<!-- Button 5: Documents -->
 								<article>
-									<span class="image">
-										<img src="images/pic05.jpg" alt="Documents" />
-									</span>
+									<span class="image"><img src="images/pic05.jpg" alt="Documents" /></span>
 									<header class="major">
 										<h3><a href="documents.html" class="link">Documents</a></h3>
 										<p>Research Papers & Documentation</p>
 									</header>
 								</article>
-								
-								<!-- Button 6: Text Page -->
 								<article>
-									<span class="image">
-										<img src="images/pic06.jpg" alt="About" />
-									</span>
+									<span class="image"><img src="images/pic06.jpg" alt="About" /></span>
 									<header class="major">
 										<h3><a href="text_page.html" class="link">About Project</a></h3>
 										<p>Additional Information & Context</p>
@@ -139,10 +114,9 @@
 									</ul>
 								</div>
 							</section>
-
 					</div>
 
-				<!-- Contact -->
+				<!-- Contact Section -->
 					<section id="contact">
 						<div class="inner">
 							<section>
@@ -220,37 +194,49 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
             
-            <!-- User Greeting Logic -->
+            <!-- User Greeting & Logout Logic (Updated with Node.js Logging) -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // 检查是否有保存的用户名
                     const username = localStorage.getItem('portfolio_username');
                     const bannerTitle = document.getElementById('banner-title');
                     const loginBtn = document.getElementById('menu-login-btn');
                     const logoutBtn = document.getElementById('menu-logout-btn');
 
                     if (username) {
-                        // 如果已登录
-                        if (bannerTitle) {
-                            // 添加 "Hi: xxx." 前缀
-                            // 原始文本是 "Welcome to My Showcase"
-                            bannerTitle.innerHTML = `Hi: ${username}. <br />Welcome to My Showcase`;
+                        if (bannerTitle) { 
+                            bannerTitle.innerHTML = `Hi: ${username}. <br /> Welcome!`;
                         }
 
-                        // 切换菜单按钮状态
                         if (loginBtn) loginBtn.style.display = 'none';
                         if (logoutBtn) {
                             logoutBtn.style.display = 'block';
-                            // 登出逻辑
-                            logoutBtn.addEventListener('click', function(e) {
+                            
+                            // 更新登出逻辑
+                            logoutBtn.addEventListener('click', async function(e) {
                                 e.preventDefault();
+                                
+                                // === 新增: 发送登出日志到 Node.js 后台 ===
+                                if (username) {
+                                    try {
+                                        await fetch('http://localhost:3000/api/logout', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({ username: username })
+                                        });
+                                        console.log('Logout log sent to server');
+                                    } catch (error) {
+                                        console.error('Failed to send logout log:', error);
+                                    }
+                                }
+                                // === 结束新增 ===
+
                                 localStorage.removeItem('portfolio_username');
                                 window.location.reload(); 
-								// 刷新页面以重置状态
                             });
                         }
                     } else {
-                        // 未登录状态
                          if (bannerTitle) {
                             bannerTitle.innerHTML = "Welcome to My Showcase";
                          }
